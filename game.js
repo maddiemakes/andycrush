@@ -1,23 +1,3 @@
-//-------------------------------------------------------------------------
-// How To Make A Match-3 Game With HTML5 Canvas
-// Copyright (c) 2015 Rembound.com
-// 
-// This program is free software: you can redistribute it and/or modify  
-// it under the terms of the GNU General Public License as published by  
-// the Free Software Foundation, either version 3 of the License, or  
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,  
-// but WITHOUT ANY WARRANTY; without even the implied warranty of  
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  
-// GNU General Public License for more details.  
-// 
-// You should have received a copy of the GNU General Public License  
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-//
-// http://rembound.com/articles/how-to-make-a-match3-game-with-html5-canvas
-// ------------------------------------------------------------------------
-
 // The function gets called when the window is fully loaded
 window.onload = function() {
     // Get the canvas and context
@@ -67,9 +47,6 @@ window.onload = function() {
     // Show available moves
     var showmoves = false;
     
-    // The AI bot
-    var aibot = false;
-    
     // Game Over
     var gameover = false;
 
@@ -79,8 +56,7 @@ window.onload = function() {
 
     // Gui buttons
     var buttons = [ { x: 30, y: 240, width: 150, height: 50, text: "New Game"},
-                    { x: 30, y: 300, width: 150, height: 50, text: "Show Moves"},
-                    { x: 30, y: 360, width: 150, height: 50, text: "Enable AI Bot"}];
+                    { x: 30, y: 300, width: 150, height: 50, text: "Show Moves"}];
     
     // Initialize the game
     function init() {
@@ -165,26 +141,6 @@ window.onload = function() {
                 gameover = true;
             }
             
-            // Let the AI bot make a move, if enabled
-            if (aibot) {
-                animationtime += dt;
-                if (animationtime > animationtimetotal) {
-                    // Check if there are moves available
-                    findMoves();
-                    
-                    if (moves.length > 0) {
-                        // Get a random valid move
-                        var move = moves[Math.floor(Math.random() * moves.length)];
-                        
-                        // Simulate a player using the mouse to swap two tiles
-                        mouseSwap(move.column1, move.row1, move.column2, move.row2);
-                    } else {
-                        // No moves left, Game Over. We could start a new game.
-                        // newGame();
-                    }
-                    animationtime = 0;
-                }
-            }
         } else if (gamestate == gamestates.resolve) {
             // Game is busy resolving and animating clusters
             animationtime += dt;
@@ -865,10 +821,6 @@ window.onload = function() {
                     // Show Moves
                     showmoves = !showmoves;
                     buttons[i].text = (showmoves?"Hide":"Show") + " Moves";
-                } else if (i == 2) {
-                    // AI Bot
-                    aibot = !aibot;
-                    buttons[i].text = (aibot?"Disable":"Enable") + " AI Bot";
                 }
             }
         }
