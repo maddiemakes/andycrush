@@ -61,7 +61,7 @@ window.onload = function() {
     // Initialize the game
     function init() {
         // Load images
-        images = loadImages(["images/andy1.png", "images/andy2.png", "images/andy3.png", "images/andy4.png", "images/andy5.png"]);
+        images = loadImages(["images/andy1.png", "images/andy2.png", "images/andy3.png", "images/andy4.png", "images/andy5.png", "images/andy6.png"]);
 
         // Add mouse events
         canvas.addEventListener("mousemove", onMouseMove);
