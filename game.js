@@ -45,15 +45,6 @@ window.onload = function() {
         selectedtile: { selected: false, column: 0, row: 0 }
     };
     
-    // All of the different tile colors in RGB
-    var tilecolors = [[255, 128, 128],
-                      [128, 255, 128],
-                      [128, 128, 255],
-                      [255, 255, 128],
-                      [255, 128, 255],
-                      [128, 255, 255],
-                      [255, 255, 255]];
-    
     // Clusters and moves that were found
     var clusters = [];  // { column, row, length, horizontal }
     var moves = [];     // { column1, row1, column2, row2 }
@@ -84,7 +75,6 @@ window.onload = function() {
 
     var loadcount = 0;
     var loadtotal = 0;
-    var preloaded = false;
     var images = []
 
     // Gui buttons
@@ -124,7 +114,6 @@ window.onload = function() {
         // Initialize variables
         loadcount = 0;
         loadtotal = imagefiles.length;
-        preloaded = false;
     
         // Load the images
         var loadedimages = [];
@@ -136,8 +125,6 @@ window.onload = function() {
             image.onload = function () {
                 loadcount++;
                 if (loadcount == loadtotal) {
-                    // Done loading
-                    preloaded = true;
                 }
             };
     
