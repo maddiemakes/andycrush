@@ -15,12 +15,12 @@ window.onload = function() {
     
     // Level object
     var level = {
-        x: 250,         // X position
-        y: 113,         // Y position
+        x: 240,         // X position
+        y: 93,         // Y position
         columns: 8,     // Number of tile columns
         rows: 8,        // Number of tile rows
-        tilewidth: 40,  // Visual width of a tile
-        tileheight: 40, // Visual height of a tile
+        tilewidth: 60,  // Visual width of a tile
+        tileheight: 60, // Visual height of a tile
         tiles: [],      // The two-dimensional tile array
         selectedtile: { selected: false, column: 0, row: 0 }
     };
@@ -256,8 +256,8 @@ window.onload = function() {
         // Draw score
         context.fillStyle = "#FFFFFF";
         context.font = "24px Verdana";
-        drawCenterText("Score:", 30, level.y+40, 150);
-        drawCenterText(score, 30, level.y+70, 150);
+        drawCenterText("Score:", level.x+30, level.y+40, 150);
+        drawCenterText(score, level.x+30, level.y+70, 150);
         
         // Draw buttons
         drawButtons();
