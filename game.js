@@ -397,15 +397,8 @@ window.onload = function() {
                 
                 // Check if there is a tile present
                 if (level.tiles[i][j].type >= 0) {
-                    // Get the color of the tile
-                    //var col = tilecolors[level.tiles[i][j].type];
-                    //console.log(images[level.tiles[i][j].type].src.slice(-9));
-                    
-                    // Draw the tile using the color
+                    // Draw the tile using the image
                     drawTile(coord.tilex, coord.tiley, images[level.tiles[i][j].type]);
-                    //console.log(images[level.tiles[i][j].type]);
-                    console.log("render");
-
                 }
                 
                 // Draw the selected tile
@@ -460,13 +453,11 @@ window.onload = function() {
     
     // Draw a tile with an image
     function drawTile(x, y, image) {
-        console.log("draw");
         context.drawImage(image, x+2, y+2, level.tilewidth-4,level.tileheight-4);
     }
 
     //Draw a tile with a color
     function drawTileC(x, y, r, g, b) {
-        console.log("color draw");
         context.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
         context.fillRect(x + 2, y + 2, level.tilewidth - 4, level.tileheight - 4);
     }
