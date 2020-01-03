@@ -256,8 +256,8 @@ window.onload = function() {
         // Draw score
         context.fillStyle = "#FFFFFF";
         context.font = "24px Verdana";
-        drawCenterText("Score:", level.x+30, level.y+40, 150);
-        drawCenterText(score, level.x+30, level.y+70, 150);
+        drawCenterText("Score:", 30, level.y+40, 150);
+        drawCenterText(score, 30, level.y+70, 150);
         
         // Draw buttons
         drawButtons();
