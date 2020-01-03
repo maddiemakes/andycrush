@@ -254,7 +254,7 @@ window.onload = function() {
         drawFrame();
         
         // Draw score
-        context.fillStyle = "#FFFFFF";
+        context.fillStyle = "#FFDEE3";
         context.font = "24px Verdana";
         drawCenterText("Score:", 30, level.y+40, 150);
         drawCenterText(score, 30, level.y+70, 150);
@@ -265,7 +265,7 @@ window.onload = function() {
         // Draw level background
         var levelwidth = level.columns * level.tilewidth;
         var levelheight = level.rows * level.tileheight;
-        context.fillStyle = "#FFFFFF";
+        context.fillStyle = "#FFDEE3";
         context.fillRect(level.x - 4, level.y - 4, levelwidth + 8, levelheight + 8);
         
         // Render tiles
@@ -284,7 +284,7 @@ window.onload = function() {
             context.fillStyle = "rgba(0, 0, 0, 0.8)";
             context.fillRect(level.x, level.y, levelwidth, levelheight);
             
-            context.fillStyle = "#ffffff";
+            context.fillStyle = "#ff3334";
             context.font = "24px Verdana";
             drawCenterText("Game Over!", level.x, level.y + levelheight / 2 + 10, levelwidth);
         }
@@ -293,13 +293,13 @@ window.onload = function() {
     // Draw a frame with a border
     function drawFrame() {
         // Draw background and a border
-        context.fillStyle = "#d0d0d0";
+        context.fillStyle = "#ff3334";
         context.fillRect(0, 0, canvas.width, canvas.height);
-        context.fillStyle = "#003366";
+        context.fillStyle = "#ff6f77";
         context.fillRect(1, 1, canvas.width-2, canvas.height-2);
         
         // Draw header
-        context.fillStyle = "#303030";
+        context.fillStyle = "#c00000";
         context.fillRect(0, 0, canvas.width, 65);
         
         // Draw title
@@ -317,7 +317,7 @@ window.onload = function() {
     function drawButtons() {
         for (var i=0; i<buttons.length; i++) {
             // Draw button shape
-            context.fillStyle = "#000000";
+            context.fillStyle = "#ff3334";
             context.fillRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height);
             
             // Draw button text
