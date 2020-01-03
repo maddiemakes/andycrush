@@ -348,7 +348,7 @@ window.onload = function() {
                 if (level.selectedtile.selected) {
                     if (level.selectedtile.column == i && level.selectedtile.row == j) {
                         // Draw a red tile
-                        drawTileC(coord.tilex, coord.tiley, 255, 0, 0);
+                        drawTileC(coord.tilex, coord.tiley, 255, 111, 119);
                     }
                 }
             }
@@ -371,8 +371,8 @@ window.onload = function() {
             var col2 = images[level.tiles[currentmove.column2][currentmove.row2].type];
             
             // Draw a black background
-            drawTileC(coord1.tilex, coord1.tiley, 255, 255, 255);
-            drawTileC(coord2.tilex, coord2.tiley, 255, 255, 255);
+            drawTileC(coord1.tilex, coord1.tiley, 255, 222, 227);
+            drawTileC(coord2.tilex, coord2.tiley, 255, 222, 227);
             
             // Change the order, depending on the animation state
             if (animationstate == 2) {
