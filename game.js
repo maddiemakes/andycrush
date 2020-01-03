@@ -86,7 +86,7 @@ window.onload = function() {
     var loadtotal = 0;
     var preloaded = false;
     var images = []
-    
+
     // Gui buttons
     var buttons = [ { x: 30, y: 240, width: 150, height: 50, text: "New Game"},
                     { x: 30, y: 300, width: 150, height: 50, text: "Show Moves"},
@@ -311,7 +311,7 @@ window.onload = function() {
         drawFrame();
         
         // Draw score
-        context.fillStyle = "#000000";
+        context.fillStyle = "#FFFFFF";
         context.font = "24px Verdana";
         drawCenterText("Score:", 30, level.y+40, 150);
         drawCenterText(score, 30, level.y+70, 150);
@@ -322,7 +322,7 @@ window.onload = function() {
         // Draw level background
         var levelwidth = level.columns * level.tilewidth;
         var levelheight = level.rows * level.tileheight;
-        context.fillStyle = "#000000";
+        context.fillStyle = "#FFFFFF";
         context.fillRect(level.x - 4, level.y - 4, levelwidth + 8, levelheight + 8);
         
         // Render tiles
@@ -352,7 +352,7 @@ window.onload = function() {
         // Draw background and a border
         context.fillStyle = "#d0d0d0";
         context.fillRect(0, 0, canvas.width, canvas.height);
-        context.fillStyle = "#e8eaec";
+        context.fillStyle = "#003366";
         context.fillRect(1, 1, canvas.width-2, canvas.height-2);
         
         // Draw header
@@ -362,7 +362,7 @@ window.onload = function() {
         // Draw title
         context.fillStyle = "#ffffff";
         context.font = "24px Verdana";
-        context.fillText("Match3 Example - Rembound.com", 10, 30);
+        context.fillText("Andy Crush", 10, 30);
         
         // Display fps
         context.fillStyle = "#ffffff";
@@ -398,18 +398,21 @@ window.onload = function() {
                 // Check if there is a tile present
                 if (level.tiles[i][j].type >= 0) {
                     // Get the color of the tile
-                    var col = tilecolors[level.tiles[i][j].type];
-                    console.log(images[0].src);
+                    //var col = tilecolors[level.tiles[i][j].type];
+                    //console.log(images[level.tiles[i][j].type].src.slice(-9));
                     
                     // Draw the tile using the color
-                    drawTile(coord.tilex, coord.tiley, col[0], col[1], col[2]);
+                    drawTile(coord.tilex, coord.tiley, images[level.tiles[i][j].type]);
+                    //console.log(images[level.tiles[i][j].type]);
+                    console.log("render");
+
                 }
                 
                 // Draw the selected tile
                 if (level.selectedtile.selected) {
                     if (level.selectedtile.column == i && level.selectedtile.row == j) {
                         // Draw a red tile
-                        drawTile(coord.tilex, coord.tiley, 255, 0, 0);
+                        drawTileC(coord.tilex, coord.tiley, 255, 0, 0);
                     }
                 }
             }
@@ -424,26 +427,26 @@ window.onload = function() {
             // First tile
             var coord1 = getTileCoordinate(currentmove.column1, currentmove.row1, 0, 0);
             var coord1shift = getTileCoordinate(currentmove.column1, currentmove.row1, (animationtime / animationtimetotal) * shiftx, (animationtime / animationtimetotal) * shifty);
-            var col1 = tilecolors[level.tiles[currentmove.column1][currentmove.row1].type];
+            var col1 = images[level.tiles[currentmove.column1][currentmove.row1].type];
             
             // Second tile
             var coord2 = getTileCoordinate(currentmove.column2, currentmove.row2, 0, 0);
             var coord2shift = getTileCoordinate(currentmove.column2, currentmove.row2, (animationtime / animationtimetotal) * -shiftx, (animationtime / animationtimetotal) * -shifty);
-            var col2 = tilecolors[level.tiles[currentmove.column2][currentmove.row2].type];
+            var col2 = images[level.tiles[currentmove.column2][currentmove.row2].type];
             
             // Draw a black background
-            drawTile(coord1.tilex, coord1.tiley, 0, 0, 0);
-            drawTile(coord2.tilex, coord2.tiley, 0, 0, 0);
+            drawTileC(coord1.tilex, coord1.tiley, 255, 255, 255);
+            drawTileC(coord2.tilex, coord2.tiley, 255, 255, 255);
             
             // Change the order, depending on the animation state
             if (animationstate == 2) {
                 // Draw the tiles
-                drawTile(coord1shift.tilex, coord1shift.tiley, col1[0], col1[1], col1[2]);
-                drawTile(coord2shift.tilex, coord2shift.tiley, col2[0], col2[1], col2[2]);
+                drawTile(coord1shift.tilex, coord1shift.tiley, col1);
+                drawTile(coord2shift.tilex, coord2shift.tiley, col2);
             } else {
                 // Draw the tiles
-                drawTile(coord2shift.tilex, coord2shift.tiley, col2[0], col2[1], col2[2]);
-                drawTile(coord1shift.tilex, coord1shift.tiley, col1[0], col1[1], col1[2]);
+                drawTile(coord2shift.tilex, coord2shift.tiley, col2);
+                drawTile(coord1shift.tilex, coord1shift.tiley, col1);
             }
         }
     }
@@ -455,11 +458,17 @@ window.onload = function() {
         return { tilex: tilex, tiley: tiley};
     }
     
-    // Draw a tile with a color
+    // Draw a tile with an image
     function drawTile(x, y, image) {
-        // context.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
-        // context.fillRect(x + 2, y + 2, level.tilewidth - 4, level.tileheight - 4);
-        context.drawImage(image, x+2, y+2, levels.tilewidth-4,levels.tileheight-4);
+        console.log("draw");
+        context.drawImage(image, x+2, y+2, level.tilewidth-4,level.tileheight-4);
+    }
+
+    //Draw a tile with a color
+    function drawTileC(x, y, r, g, b) {
+        console.log("color draw");
+        context.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+        context.fillRect(x + 2, y + 2, level.tilewidth - 4, level.tileheight - 4);
     }
     
     // Render clusters
@@ -514,7 +523,7 @@ window.onload = function() {
         findMoves();
         findClusters(); 
     }
-    
+
     // Create a random level
     function createLevel() {
         var done = false;
@@ -544,7 +553,7 @@ window.onload = function() {
     
     // Get a random tile
     function getRandomTile() {
-        return Math.floor(Math.random() * tilecolors.length);
+        return Math.floor(Math.random() * images.length);
     }
     
     // Remove clusters and insert tiles
