@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Andy Crush</title>
-<script type="text/javascript" src="game.js"></script>
+  <meta charset="UTF-8">
+  <title>Andy Crush</title>
+  <script type="text/javascript" src="game.js"></script>
 </head>
-<body>
-<p align="center">
-<canvas id="viewport" width="800" height="600" align="right"></canvas>
-</p>
+<body ng-app="menuApp">
+  <!-- Heads up! - include the header/menu -->
+  <div ng-include="'header.html'"></div>
+  <p align="center">
+  <canvas id="viewport" width="800" height="600" align="right"></canvas>
+  </p>
 </body>
 </html>
